@@ -44,15 +44,14 @@ def webhook4():
     req = request.get_json(force=True)
     # fetch queryResult from json
     action =  req.get("queryResult").get("action")
-    #msg =  req.get("queryResult").get("queryText")
-    #info = "動作：" + action + "； 查詢內容：" + msg
+    
     if (action == "asktags"):
         tags =  req.get("queryResult").get("parameters").get("tags")
         if (tags == "小說"):
             tags = "輔導級(未滿十二歲之兒童不得觀賞)"
         elif (tags == "漫畫"):
             tags = "輔導級(未滿十五歲之人不得觀賞)"
-        info = "您選擇的電影分級是：" + tags + "，相關書籍：\n"
+        info = "您選擇的書籍是：" + tags + "，相關書籍：\n"
 
         collection_ref = db.collection("book")
         docs = collection_ref.get()
