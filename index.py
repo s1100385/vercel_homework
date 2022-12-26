@@ -45,13 +45,30 @@ def webhook4():
     # fetch queryResult from json
     action =  req.get("queryResult").get("action")
     
-    if (action == "asktags"):
+    if (action == "askmagazine"):
         tags =  req.get("queryResult").get("parameters").get("tags")
-        if (tags == "小說"):
-            tags = "輔導級(未滿十二歲之兒童不得觀賞)"
-        elif (tags == "漫畫"):
-            tags = "輔導級(未滿十五歲之人不得觀賞)"
-        info = "您選擇的書籍是：" + tags + "，相關書籍：\n"
+        if (tags == "雜誌"):
+            info = "您選擇的書籍是：" + tags + "，相關書籍：\n"
+    if (action == "askcomic"):
+        tags =  req.get("queryResult").get("parameters").get("tags")
+        if (tags == "漫畫"):
+            tags = "漫畫"
+            info = "您選擇的書籍是：" + tags + "，相關書籍：\n"
+    if (action == "askbook"):
+        tags =  req.get("queryResult").get("parameters").get("tags")
+        if (tags == "實用書"):
+            tags = "實用書"
+            info = "您選擇的書籍是：" + tags + "，相關書籍：\n"
+    if (action == "askliterature"):
+        tags =  req.get("queryResult").get("parameters").get("tags")
+        if (tags == "文學"):
+            tags = "文學"
+            info = "您選擇的書籍是：" + tags + "，相關書籍：\n"
+    if (action == "asklightnovel"):
+        tags =  req.get("queryResult").get("parameters").get("tags")
+        if (tags == "輕小說"):
+            tags = "輕小說"
+            info = "您選擇的書籍是：" + tags + "，相關書籍：\n"
 
         collection_ref = db.collection("book")
         docs = collection_ref.get()
